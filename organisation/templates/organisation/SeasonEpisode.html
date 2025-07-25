@@ -1,0 +1,409 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seasons | Episodes</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'resources/D moviesand tv show.png' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+        <link rel="stylesheet" href="{% static 'movien/style.css' %}">
+</head>
+<style>
+  .body.light .light_darkmode {
+      background-image: url({% static 'resources/icon-moon.svg' %});
+      background-color: #004cff4a;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+  box-shadow: var(--shadow);
+  background-blend-mode: luminosity;
+  }
+
+  .light_darkmode {
+      background-image: url({% static 'resources/icon-sun.svg' %});
+      background-color: black;
+      width: 35px;
+      background-repeat: no-repeat;
+      height: 32px;
+      background-position: center;
+      background-size: 18px;
+      border-radius: 10px;
+      background-color: rgb(87 88 92 / 54%);
+      background-color: #3b3e5e;
+      position: absolute;
+      margin-left: 87%;
+      transition-duration: 0.5s;
+      transition-timing-function: linear;
+  }
+  
+</style>
+<body class="body">
+    <main class="main">
+        <div class="overlay overlay2"></div>
+        <div class="overlay_side_navabar"></div>
+        <div class="sidenav_container_movieDetail">
+            <div class="sidenav_child_container">
+                <nav class="sidenav sidenav_2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#ffff"
+                        class="arrow_left bi-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                    </svg>
+                    <h3 class="title"><img style="height: 75px; width: 190px;" src="{% static 'resources/logo1.png' %}"></h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" fill="currentColor"
+                        class="hamburger bi-list" viewBox="0 0 16 16">
+                        <path class="pathh pathhphone" fill-rule="evenodd"
+                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+                    <div class="menu">
+                        <h4 class="menu_title">Menu</h4>
+                        <ul class="menu_ul">
+                          <li class="home">
+                            <a class="sidenavlinks" href="{% url 'movien-index' %}"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="22" height="22" fill="currentColor" class="bi bi-house-fill"
+                                    viewBox="0 0 16 16">
+                                    <path class="path" fill-rule="evenodd"
+                                        d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+                                    <path class="path" fill-rule="evenodd"
+                                        d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
+                                </svg><span class="Home_title title_span">Home</span></a>
+                        </li>
+                        <li class="movie">
+                            <a class="sidenavlinks" href="{% url 'movien-moviesGenre' %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                    class="bi bi-play-fill" viewBox="0 0 16 16">
+                                    <path class="path"
+                                        d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+                                </svg>
+                                <span class="movie_name title_span">Movies</span></a>
+                        </li>
+                        <li class="tv_shows">
+                            <a class="sidenavlinks" href="{% url 'movien-tvShows' %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                    class="bi bi-tv-fill" viewBox="0 0 16 16">
+                                    <path class="path"
+                                        d="M2.5 13.5A.5.5 0 0 1 3 13h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zM2 2h12s2 0 2 2v6s0 2-2 2H2s-2 0-2-2V4s0-2 2-2z" />
+                                </svg>
+                                <span class="tv_shows_title title_span">Shows</span></a>
+                        </li>
+                        <li class="playlist">
+                          <a class="sidenavlinks" href="{% url 'allMovies' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
+                              <path class="path" d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                              <path class="path" d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                            </svg>
+                          <span class="settings_title title_span">Playlist</span></a>
+                      </li>
+                        <li class="watchlist">
+                          <a class="sidenavlinks" href="{% url 'bucketlist' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-bookmark-heart-fill" viewBox="0 0 16 16">
+                              <path class="path" d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
+                            </svg>
+                          <span class="settings_title title_span">Watchlist</span></a>
+                      </li>
+                        <li class="settings">
+                            <a class="sidenavlinks" href="{% url 'movien-aboutus' %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                    class="bi bi-info-square-fill" viewBox="0 0 16 16">
+                                    <path class="path"
+                                        d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                                </svg><span class="settings_title title_span">About</span></a>
+                        </li>
+                        
+                        <li class="logout">
+                            <a class="sidenavlinks" href="{% url 'logout' %}">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                    class="bi bi-person-fill" viewBox="0 0 16 16">
+                                    <path class="path"
+                                        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                              </svg>
+                            <span class="settings_title title_span">Logout</span></a>
+                        </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <section class="section_one section_one_movieDetail">
+            <div class="nav_paremt_conatainer movieDetailnav_paremt_conatainer">
+                <nav class="navContainer movieDetailnavContainer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" fill="currentColor"
+                        class="hamburger hamburgerphone bi-list" viewBox="0 0 16 16">
+                        <path class="pathh" fill-rule="evenodd"
+                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+                    <input class="search" type="text" placeholder="Search " />
+                    <div class="light_darkmode"></div>
+                </nav>
+            </div>
+            <section class="section_two section_two2">
+                <section class="Now_playing_movies_container_search">
+                    <h4 class="Now_playing_movies_container_title titleoftvshow"></h4>
+                </section>
+                <section class="msg_episode_container">
+                    <!-- <div class="msg_episode">If the episodes list are in random order. Click on the current season
+                        number twice</div> -->
+                </section>
+                <section class="number_of_seasons"></section>
+                <section class="currentseason_container">
+                    <h4 class="Now_playing_movies_container_title current_season"></h4>
+                </section>
+                <section class="Episodes_container"></section>
+            </section>
+        </section>
+    </main>
+    <script>
+        const searchResultDiv = document.querySelector(".search_result_div");
+const searchBtn = document.querySelector(".search");
+const searchHeader = document.getElementById("search_header");
+const hamburgerPhone = document.querySelector(".hamburgerphone");
+const hamburger = document.querySelector(".hamburger");
+const overlaySideNavabar = document.querySelector(".overlay_side_navabar");
+const lightDarkmode = document.querySelector(".light_darkmode");
+const arrowLeft = document.querySelector(".arrow_left");
+const sidenavChildContainer = document.querySelector(
+  ".sidenav_child_container"
+);
+const numberOFSeasons = document.querySelector(".number_of_seasons");
+const EpisodesContainer = document.querySelector(".Episodes_container");
+const currentSeason = document.querySelector(".current_season");
+const menuulLI = document.querySelectorAll(".menu_ul li");
+const titleoftvshow = document.querySelector(".titleoftvshow");
+const movieDetailnavContainer = document.querySelector(
+  ".movieDetailnavContainer"
+);
+const searchbox = document.querySelector(".search");
+const msgEpisodeContainer = document.querySelector(".msg_episode_container");
+
+hamburgerPhone.addEventListener("click", function () {
+  sidenavChildContainer.classList.add("sidenav_container_active");
+  overlaySideNavabar.classList.add("sidenav_container_active");
+  hamburgerPhone.classList.add("hamburgerphonedeactive");
+});
+
+overlaySideNavabar.addEventListener("click", function () {
+  sidenavChildContainer.classList.remove("sidenav_container_active");
+  overlaySideNavabar.classList.remove("sidenav_container_active");
+  document.body.classList.remove("minimize_siderbar");
+  hamburgerPhone.classList.remove("hamburgerphonedeactive");
+});
+
+const hideMsg = function () {
+  msgEpisodeContainer.style.display = "none";
+};
+setTimeout(hideMsg, 60000);
+
+window.addEventListener("scroll", function () {
+  let intiCon = titleoftvshow.getBoundingClientRect();
+  if (window.scrollY > intiCon.height) {
+    movieDetailnavContainer.classList.add("bgadd");
+  } else {
+    movieDetailnavContainer.classList.remove("bgadd");
+  }
+});
+
+arrowLeft.addEventListener("click", function () {
+  document.body.classList.remove("minimize_siderbar");
+});
+
+lightDarkmode.addEventListener("click", function () {
+  document.body.classList.toggle("light");
+  if (document.body.classList.contains("light")) {
+    localStorage.setItem("theme", "light");
+  } else {
+    localStorage.setItem("theme", "dark");
+  }
+});
+
+hamburger.addEventListener("click", function () {
+  document.body.classList.add("minimize_siderbar");
+});
+
+function settheme() {
+  let currtheme = localStorage.getItem("theme");
+  if (currtheme == "light") {
+    document.body.classList.add("light");
+  } else {
+    document.body.classList.remove("light");
+  }
+}
+
+settheme();
+
+menuulLI.forEach((item) => {
+  item.addEventListener("click", function () {
+    menuulLI.forEach((i) => i.classList.remove("hovered"));
+    item.classList.add("hovered");
+  });
+});
+menuulLI[2].classList.add("hovered");
+
+const myApi = "6b2dec73b6697866a50cdaef60ccffcb";
+
+let url = document.location.href;
+let fetcid = url.slice(url.indexOf("=") + 1);
+let numberOfSeason = Number(url.slice(url.indexOf("Z") + 1, url.indexOf("-")));
+
+const seasonsnoFun = function () {
+  let seasonhtml = "";
+  for (let i = 1; i < numberOfSeason + 1; i++) {
+    seasonhtml += `<li class="season">${i}</li>`;
+  }
+
+  return ` <ol class="seasonul">${seasonhtml}
+</ol>`;
+};
+numberOFSeasons.innerHTML = seasonsnoFun();
+const Seseason = document.querySelectorAll(".season");
+Seseason[0].classList.add("seasonBtnactive");
+
+numberOFSeasons.addEventListener("click", function (e) {
+  let element = e.target;
+  if (element.classList.contains("season")) {
+    const Seseason = document.querySelectorAll(".season");
+    Seseason.forEach((i) => i.classList.remove("seasonBtnactive"));
+    element.classList.add("seasonBtnactive");
+    EpisodesContainer.innerHTML = " ";
+    seasonnumfun(element.innerText);
+  }
+});
+
+const CurrTvshow = async (id) => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/tv/${id}?api_key=${myApi}`
+  );
+  const data = await res.json();
+  return data;
+};
+
+const CurrEpisode = async (tv_id, currSea, currEpiso) => {
+  let episohtml;
+  const res = await fetch(
+    `https://api.themoviedb.org/3/tv/${tv_id}/season/${currSea}/episode/${currEpiso}?api_key=6b2dec73b6697866a50cdaef60ccffcb`
+  );
+  const data = await res.json();
+  episohtml = episodefun(data);
+  EpisodesContainer.insertAdjacentHTML("beforeend", episohtml);
+};
+
+const releasedEpisode = function (curre) {
+  return `<a href=" https://www.2embed.to/embed/tmdb/tv?id=${fetcid}&s=${
+    curre.season_number
+  }&e=${curre.episode_number}" target="_blank"><img class="episode_image"
+    src="https://image.tmdb.org/t/p/w500/${curre.still_path}" alt="${
+    curre.name
+  }">
+    <span class="runtime">${timeCon(curre.runtime)}</span>
+<div class="playsvg_container"><img class="playsvg" src="./resources/play-circle-fill.svg"
+        alt=""></div>
+</a>
+<div class="episode_detail">
+<h2 class="episode_title"> <span class="episodenumm">${
+    curre.episode_number
+  }.</span> ${curre.name}</h2>
+<p class="episode_description">${curre.overview}</p>
+</div>`;
+};
+
+const unreleasedEpisodev = function (curre) {
+  return `<a class="unreleased_link" href=" https://www.2embed.to/embed/tmdb/tv?id=${fetcid}&s=${
+    curre.season_number
+  }&e=${curre.episode_number}"><img class="episode_image unreleased_image"
+    src="{% static 'resources/D moviesand tv show.png' %}" alt="${curre.name}">
+    <span class="runtime">${timeCon(curre.runtime)}</span>
+<div class="playsvg_container"><img class="playsvg" src="./resources/play-circle-fill.svg"
+        alt=""></div>
+</a>
+<div class="episode_detail">
+<h2 class="episode_title"> <span class="episodenumm">${
+    curre.episode_number
+  }.</span> ${curre.name}</h2>
+<p class="episode_description">${curre.overview}</p>
+</div>`;
+};
+
+const episodefun = function (currepsh) {
+  return `<div class="epishodes_card">
+    ${
+      currepsh.still_path == null
+        ? unreleasedEpisodev(currepsh)
+        : releasedEpisode(currepsh)
+    }
+    </div>`;
+};
+
+const timeCon = function (oldtime) {
+  let newtime = "";
+  if (oldtime > 60 && oldtime < 120) {
+    let time = oldtime - 60;
+
+    if (time < 10) {
+      newtime = `1:0${time}:00`;
+    } else {
+      newtime = `1:${time}:00`;
+    }
+
+    return newtime;
+  }
+  if (oldtime > 120) {
+    let time = Math.floor(oldtime / 60);
+    if (time < 10) {
+      newtime = `2:0${time}:00`;
+    } else {
+      newtime = `2:${time}:00`;
+    }
+    return newtime;
+  }
+
+  if (oldtime == 0 || oldtime == null) {
+    newtime = "";
+    return newtime;
+  }
+
+  if (oldtime <= 60) {
+    newtime = `${oldtime}:00`;
+    return newtime;
+  }
+};
+
+let newarr = [];
+
+const seasonnumfun = function (seasoncc) {
+  EpisodesContainer.innerHTML = " ";
+  CurrTvshow(fetcid).then((dat) => {
+    document.title = `${dat.name + " " + "|" + " " + "Seasons"}`;
+    titleoftvshow.innerText = dat.name;
+    let numseasons = dat.seasons;
+    const currsea = function (seasonNO) {
+      numseasons.forEach(async (item) => {
+        if (seasonNO == item.season_number) {
+          currentSeason.innerText = `Season ${seasonNO}`;
+          let numOfEpisodes = item.episode_count;
+          for (i = 1; i < numOfEpisodes + 1; i++) {
+            await CurrEpisode(fetcid, seasonNO, i);
+          }
+        }
+      });
+    };
+    currsea(seasoncc);
+  });
+};
+
+seasonnumfun(1);
+
+searchbox.addEventListener("click", function () {
+  location.replace("{% url 'movien-search2' %}");
+});
+
+    </script>
+</body>
+
+</html>
