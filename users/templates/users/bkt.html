@@ -1,0 +1,327 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load pwa %}
+    {% progressive_web_app_meta %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'resources/D moviesand tv show.png' %}" />
+    {% if title %}
+    <title>MovieVerse - {{title}}</title>
+    {% else %}
+    <title>MovieVerse</title>
+    {% endif %}
+    <script type="text/javascript" src="{% static 'movien/main.js' %}" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Pacifico&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'movien/style.css' %}" />
+
+</head>
+<style>
+    .body.light .light_darkmode {
+        background-image: url({% static 'resources/icon-moon.svg' %});
+        background-color: #004cff4a;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+    box-shadow: var(--shadow);
+    background-blend-mode: luminosity;
+    }
+
+    .light_darkmode {
+      background-image: url({% static 'resources/icon-sun.svg' %});
+      background-color: black;
+      width: 35px;
+      background-repeat: no-repeat;
+      height: 32px;
+      background-position: center;
+      background-size: 18px;
+      border-radius: 10px;
+      background-color: rgb(87 88 92 / 54%);
+      background-color: #3b3e5e;
+      position: absolute;
+      margin-left: 87%;
+      transition-duration: 0.5s;
+      transition-timing-function: linear;
+    }
+    
+</style>
+
+
+<body class="body">
+  <main class="main">
+      <!--  <section class="alertMsg">
+          <h2 class="alertMsg_header">TV shows added</h2>
+          <p class="alertMsg_para">Search now includes movies and tv shows.
+              More updates coming soon !!! <br> stay tuned Thank You!😊</p>
+          <button class="okaybtn">Okay</button>
+      </section>-->
+      <div class="overlay"></div>
+      <div class="overlay_side_navabar"></div>
+      <div class="sidenav_container">
+          <nav class="sidenav">
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#ffff"
+                  class="arrow_left bi-arrow-left" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                      d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+              </svg>
+              <h3 class="title"><img style="height: 75px; width: 190px;" src="{% static 'resources/logo1.png' %}"></h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" fill="currentColor"
+                  class="hamburger bi-list" viewBox="0 0 16 16">
+                  <path class="pathh pathhphone" fill-rule="evenodd"
+                      d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+              </svg>
+
+              <div class="menu">
+                  <h4 class="menu_title">Menu</h4>
+                  <ul class="menu_ul">
+                    <li class="home">
+                      <a class="sidenavlinks" href="{% url 'movien-index' %}"><svg xmlns="http://www.w3.org/2000/svg"
+                              width="22" height="22" fill="currentColor" class="bi bi-house-fill"
+                              viewBox="0 0 16 16">
+                              <path class="path" fill-rule="evenodd"
+                                  d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+                              <path class="path" fill-rule="evenodd"
+                                  d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
+                          </svg><span class="Home_title title_span">Home</span></a>
+                  </li>
+                  <li class="movie">
+                      <a class="sidenavlinks" href="{% url 'movien-moviesGenre' %}">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                              class="bi bi-play-fill" viewBox="0 0 16 16">
+                              <path class="path"
+                                  d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+                          </svg>
+                          <span class="movie_name title_span">Movies</span></a>
+                  </li>
+                  <li class="tv_shows">
+                      <a class="sidenavlinks" href="{% url 'movien-tvShows' %}">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                              class="bi bi-tv-fill" viewBox="0 0 16 16">
+                              <path class="path"
+                                  d="M2.5 13.5A.5.5 0 0 1 3 13h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zM2 2h12s2 0 2 2v6s0 2-2 2H2s-2 0-2-2V4s0-2 2-2z" />
+                          </svg>
+                          <span class="tv_shows_title title_span">Shows</span></a>
+                  </li>
+                  <li class="playlist">
+                    <a class="sidenavlinks" href="{% url 'allMovies' %}">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
+                        <path class="path" d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path class="path" d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                      </svg>
+                    <span class="settings_title title_span">Playlist</span></a>
+                </li>
+                  <li class="watchlist">
+                    <a class="sidenavlinks" href="{% url 'bucketlist' %}">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-bookmark-heart-fill" viewBox="0 0 16 16">
+                        <path class="path" d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
+                      </svg>
+                    <span class="settings_title title_span">Watchlist</span></a>
+                </li>
+                  <li class="settings">
+                      <a class="sidenavlinks" href="{% url 'movien-aboutus' %}">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                              class="bi bi-info-square-fill" viewBox="0 0 16 16">
+                              <path class="path"
+                                  d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                          </svg><span class="settings_title title_span">About</span></a>
+                  </li>
+                  
+                  <li class="logout">
+                      <a class="sidenavlinks" href="{% url 'logout' %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                              class="bi bi-person-fill" viewBox="0 0 16 16">
+                              <path class="path"
+                                  d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                        </svg>
+                      <span class="settings_title title_span">Logout</span></a>
+                  </li>
+                  </ul>
+              </div>
+          </nav>
+      </div>
+
+      <section class="section_one">
+          <div class="nav_paremt_conatainer">
+              <nav class="navContainer">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" fill="currentColor"
+                      class="hamburger hamburgerphone bi-list" viewBox="0 0 16 16">
+                      <path class="pathh" fill-rule="evenodd"
+                          d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                  </svg>
+                  <input class="search" type="text" placeholder="Search " />
+                  
+                  <h1 class="user_detail">Welcome, {{ user.username }}</h1>
+                  <div class="light_darkmode" data-theme="black"></div>
+              </nav>
+              
+          </div>
+      </section>
+
+    <main role="main">
+        {% block content %}
+        <br><br><br>
+    <section class="section_two section_two2">
+        <section class="Now_playing_movies_container_search">
+            <h4 class="Now_playing_movies_container_title tvshowheader" id="search_header">{{ user.username }}'s Bucketlist</h4>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="leftarrow arrowsearch arrowbtn bi-chevron-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="rightarrow  arrowsearch  arrowbtn bi-chevron-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+            </svg>
+            <div class="search_result_div">
+                {% for movie in bucketlist_movies %}
+                <div class="item">
+                    
+                    <a class="posterlink" href="/movieDetail/{{ movie.movie_id }}"> <img class="poster" src="{{movie.poster}}" alt="{{movie.title}}"></a>
+                    <p class="movie_title movie_title_search" >{{ movie.movie_title }}</p>
+                    <div class="date_rating tvshows_date_rating">
+                        <span class="dot dot2 recommendTvShow_date_dot"></span>
+                        <p class="rating rating_search">{{movie.avg_rating|floatformat:1 }}
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10"
+                                       height="10" fill="Yellow" class="star bi-star-fill" viewBox="0 0 16 16">
+                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                            </span>
+                        </p>
+                        <div class="category category_search recommendTvShow_category">Movie</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </section>
+    {% endblock %}
+</main>
+
+
+
+
+
+
+
+
+
+   </main>
+
+    <script>
+        const arrowLeft = document.querySelector(".arrow_left");
+const hamburger = document.querySelector(".hamburger");
+const leftArrow = document.querySelectorAll(".leftarrow");
+const rightarrow = document.querySelectorAll(".rightarrow");
+const lightDarkmode = document.querySelector(".light_darkmode");
+
+const sectionStory = document.querySelector(".section_story");
+const hamburgerPhone = document.querySelector(".hamburgerphone");
+const sidenavContainer = document.querySelector(".sidenav_container");
+const overlaySideNavabar = document.querySelector(".overlay_side_navabar");
+const sidenav = document.querySelector(".sidenav");
+const okayBtn = document.querySelector(".okaybtn");
+const searchbox = document.querySelector(".search");
+const menuulLI = document.querySelectorAll(".menu_ul li");
+const navContainer = document.querySelector(".navContainer");
+
+menuulLI.forEach((item) => {
+  item.addEventListener("click", function () {
+    menuulLI.forEach((i) => i.classList.remove("hovered"));
+    item.classList.add("hovered");
+  });
+});
+
+lightDarkmode.addEventListener("click", function () {
+  document.body.classList.toggle("light");
+
+  if (document.body.classList.contains(`light`)) {
+    localStorage.setItem(`theme`, `light`);
+  } else {
+    localStorage.setItem(`theme`, `dark`);
+  }
+});
+
+function settheme() {
+  let currtheme = localStorage.getItem("theme");
+
+  if (currtheme == "light") {
+    document.body.classList.add("light");
+  } else {
+    document.body.classList.remove("light");
+  }
+}
+
+settheme();
+
+arrowLeft.addEventListener("click", function () {
+  document.body.classList.remove("minimize_siderbar");
+});
+
+hamburger.addEventListener("click", function () {
+  document.body.classList.add("minimize_siderbar");
+});
+
+hamburgerPhone.addEventListener("click", function () {
+  sidenavContainer.classList.add("sidenav_container_active");
+  overlaySideNavabar.classList.add("sidenav_container_active");
+});
+overlaySideNavabar.addEventListener("click", function () {
+  sidenavContainer.classList.remove("sidenav_container_active");
+  overlaySideNavabar.classList.remove("sidenav_container_active");
+  document.body.classList.remove("minimize_siderbar");
+});
+
+const myApi = "6b2dec73b6697866a50cdaef60ccffcb";
+
+// FORMATA DATE
+const dateFormatter = function (date) {
+  let currdate = date;
+  const newDate = currdate.slice(0, 4);
+  return newDate;
+};
+
+const Sidescroll = function (element, direction, speed, distance, step) {
+  scrollAmount = 0;
+  let slideTimer = setInterval(function () {
+    if (direction == "left") {
+      element.scrollLeft -= step;
+    } else {
+      element.scrollLeft += step;
+    }
+    scrollAmount += step;
+    if (scrollAmount >= distance) {
+      window.clearInterval(slideTimer);
+    }
+  }, speed);
+};
+
+window.onload = function () {
+  if (document.title.includes("Home")) {
+    menuulLI[0].classList.add("hovered");
+  }
+};
+
+searchbox.addEventListener("click", function () {
+  location.replace("{% url 'movien-search2' %}");
+});
+
+    </script>
+    
+</body>
+
+</html>

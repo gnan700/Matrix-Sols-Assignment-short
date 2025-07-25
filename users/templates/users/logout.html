@@ -1,0 +1,837 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load pwa %}
+  {% progressive_web_app_meta %}
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'resources/D moviesand tv show.png' %}" />
+    <title>Home | MovieVerse</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Pacifico&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'movien/style.css' %}" />
+</head>
+
+<style>
+  .body.light .light_darkmode {
+      background-image: url({% static 'resources/icon-moon.svg' %});
+      background-color: #004cff4a;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+  box-shadow: var(--shadow);
+  background-blend-mode: luminosity;
+  }
+
+  .light_darkmode {
+      background-image: url({% static 'resources/icon-sun.svg' %});
+      background-color: black;
+      width: 35px;
+      background-repeat: no-repeat;
+      height: 32px;
+      background-position: center;
+      background-size: 18px;
+      border-radius: 10px;
+      background-color: rgb(87 88 92 / 54%);
+      background-color: #3b3e5e;
+      position: absolute;
+      margin-left: 87%;
+      transition-duration: 0.5s;
+      transition-timing-function: linear;
+  }
+  
+</style>
+
+<body class="body">
+    <main class="main">
+        <!--  <section class="alertMsg">
+            <h2 class="alertMsg_header">TV shows added</h2>
+            <p class="alertMsg_para">Search now includes movies and tv shows.
+                More updates coming soon !!! <br> stay tuned Thank You!😊</p>
+            <button class="okaybtn">Okay</button>
+        </section>-->
+        <div class="overlay"></div>
+        <div class="overlay_side_navabar"></div>
+        <div class="sidenav_container">
+            <nav class="sidenav">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#ffff"
+                    class="arrow_left bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                </svg>
+                <h3 class="title">MovieVerse</h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" fill="currentColor"
+                    class="hamburger bi-list" viewBox="0 0 16 16">
+                    <path class="pathh pathhphone" fill-rule="evenodd"
+                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                </svg>
+
+
+
+                {% if user.is_authenticated %}
+                <div class="menu">
+                    <h4 class="menu_title">Menu</h4>
+                    <ul class="menu_ul">
+                        <li class="home">
+                            <a class="sidenavlinks" href="{% url 'movien-index' %}"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="22" height="22" fill="currentColor" class="bi bi-house-fill"
+                                    viewBox="0 0 16 16">
+                                    <path class="path" fill-rule="evenodd"
+                                        d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+                                    <path class="path" fill-rule="evenodd"
+                                        d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
+                                </svg><span class="Home_title title_span">Home</span></a>
+                        </li>
+                        <li class="movie">
+                            <a class="sidenavlinks" href="{% url 'movien-moviesGenre' %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                    class="bi bi-play-fill" viewBox="0 0 16 16">
+                                    <path class="path"
+                                        d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+                                </svg>
+                                <span class="movie_name title_span">Movies</span></a>
+                        </li>
+                        <li class="tv_shows">
+                            <a class="sidenavlinks" href="{% url 'movien-tvShows' %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                    class="bi bi-tv-fill" viewBox="0 0 16 16">
+                                    <path class="path"
+                                        d="M2.5 13.5A.5.5 0 0 1 3 13h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zM2 2h12s2 0 2 2v6s0 2-2 2H2s-2 0-2-2V4s0-2 2-2z" />
+                                </svg>
+                                <span class="tv_shows_title title_span">Shows</span></a>
+                        </li>
+                        <li class="playlist">
+                          <a class="sidenavlinks" href="{% url 'allMovies' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
+                              <path class="path" d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                              <path class="path" d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                            </svg>
+                          <span class="settings_title title_span">Playlist</span></a>
+                      </li>
+                        <li class="watchlist">
+                          <a class="sidenavlinks" href="{% url 'bucketlist' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-bookmark-heart-fill" viewBox="0 0 16 16">
+                              <path class="path" d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
+                            </svg>
+                          <span class="settings_title title_span">Watchlist</span></a>
+                      </li>
+                        <li class="settings">
+                            <a class="sidenavlinks" href="{% url 'movien-aboutus' %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                    class="bi bi-info-square-fill" viewBox="0 0 16 16">
+                                    <path class="path"
+                                        d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                                </svg><span class="settings_title title_span">About</span></a>
+                        </li>
+                        
+                        <li class="logout">
+                            <a class="sidenavlinks" href="{% url 'logout' %}">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                    class="bi bi-person-fill" viewBox="0 0 16 16">
+                                    <path class="path"
+                                        d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                              </svg>
+                            <span class="settings_title title_span">Logout</span></a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <section class="section_one">
+            <div class="nav_paremt_conatainer">
+                <nav class="navContainer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" fill="currentColor"
+                        class="hamburger hamburgerphone bi-list" viewBox="0 0 16 16">
+                        <path class="pathh" fill-rule="evenodd"
+                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+                    <input class="search" type="text" placeholder="Search " />
+                    
+                    <h1 class="user_detail">Welcome, {{ user.username }}</h1>
+                    <div class="light_darkmode" data-theme="black"></div>
+                </nav>
+                
+            </div>
+            <section class="section_two">
+                <!-- <h3 class="home_header">Home</h3> -->
+                <div class="Home_header_container">
+
+                    <div class="trending_container">
+                        <div class="Trending_arrow_container">
+                            <?xml version="1.0" ?>
+                            <!DOCTYPE svg
+                                PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
+                                class="trending_arrow trending_left_btn" height="512px" id="Layer_1"
+                                style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"
+                                xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <polygon points="352,115.4 331.3,96 160,256 331.3,416 352,396.7 201.5,256 " />
+                            </svg>
+                            <?xml version="1.0" ?>
+                            <!DOCTYPE svg
+                                PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
+                                class="trending_arrow trending_right_btn" height="512px" id="Layer_1"
+                                style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"
+                                xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <polygon points="160,115.4 180.7,96 352,256 180.7,416 160,396.7 310.5,256 " />
+                            </svg>
+
+                        </div>
+
+                        <div class="trending_poster trending_div_container">
+
+                        </div>
+                    </div>
+                    <!-- <div class="first_box">
+                        <h4 class="about">
+                            Discover Movies and <br />
+                            TV shows. Enjoy awesome <br />
+                            quality content.
+                        </h4>
+                        <div class="logo">
+                            <img class="header_logo" src="{% static 'resources/D moviesand tv show.png' %}" alt="" />
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-check">
+                                <path d="M20 6L9 17l-5-5"></path>
+                            </svg>
+                            <div class="quality_about">
+                                <h5 class="free">Yes, It's all free</h5>
+                                <div class="quality">
+                                    <p>HD Quality</p>
+                                    <span class="dot"></span>
+                                    <p>CC</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="second_box">
+                        <h4 class="about">
+                            If you like us share <br />
+                            our site to your <br />
+                            friends.
+                        </h4>
+                    </div> -->
+                </div>
+                <section class="Now_playing_movies_container Now_playing_movies_container_trend" id="nowplaying">
+                    <h4 class="Now_playing_movies_container_title">
+                        Now Playing Movies
+                    </h4>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="leftarrow arrowbtn bi-chevron-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="rightarrow rightarrowindex arrowbtn bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                    </svg>
+                    <div class="Now_playing_movies_div"></div>
+                </section>
+                <section class="Now_playing_movies_container" id="Trendingmovies">
+                    <h4 class="Now_playing_movies_container_title">Trending Movies</h4>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="leftarrow arrowbtn bi-chevron-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="rightarrow rightarrowindex arrowbtn bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                    </svg>
+                    <div class="current_popular_movies_div"></div>
+                </section>
+                <section class="Now_playing_movies_container" id="toprated">
+                    <h4 class="Now_playing_movies_container_title">Top Rated Movies</h4>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="leftarrow arrowbtn bi-chevron-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="rightarrow rightarrowindex arrowbtn bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                    </svg>
+                    <div class="Top_rated_movies_div"></div>
+                </section>
+            </section>
+        </section>
+
+
+
+
+        {% else %}
+        <div class="menu">
+          <h4 class="menu_title">Menu</h4>
+          <ul class="menu_ul">
+              <li class="home">
+                  <a class="sidenavlinks" href="{% url 'movien-index' %}"><svg xmlns="http://www.w3.org/2000/svg"
+                          width="22" height="22" fill="currentColor" class="bi bi-house-fill"
+                          viewBox="0 0 16 16">
+                          <path class="path" fill-rule="evenodd"
+                              d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+                          <path class="path" fill-rule="evenodd"
+                              d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
+                      </svg><span class="Home_title title_span">Home</span></a>
+              </li>
+              <li class="settings">
+                  <a class="sidenavlinks" href="{% url 'movien-aboutus' %}">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                          class="bi bi-info-square-fill" viewBox="0 0 16 16">
+                          <path class="path"
+                              d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                      </svg><span class="settings_title title_span">About</span></a>
+              </li>
+              <li class="login">
+                <a class="sidenavlinks" href="{% url 'login' %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                        class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <path class="path"
+                            d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                    </svg><span class="login_title title_span">Login</span>
+                </a>
+            </li>
+          </ul>
+      </div>
+  </nav>
+</div>
+
+<section class="section_one">
+  <div class="nav_paremt_conatainer">
+      <nav class="navContainer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" fill="currentColor"
+              class="hamburger hamburgerphone bi-list" viewBox="0 0 16 16">
+              <path class="pathh" fill-rule="evenodd"
+                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+          </svg>
+          <input  style="pointer-events: none; cursor: default;" type="text" placeholder="Search " />
+          <div class="light_darkmode" data-theme="black"></div>
+      </nav>
+  </div>
+  <section  style="pointer-events: none; cursor: default;" class="section_two">
+      <!-- <h3 class="home_header">Home</h3> -->
+      <div class="Home_header_container">
+
+          <div class="trending_container">
+              <div class="Trending_arrow_container">
+                  <?xml version="1.0" ?>
+                  <!DOCTYPE svg
+                      PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
+                      class="trending_arrow trending_left_btn" height="512px" id="Layer_1"
+                      style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"
+                      xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <polygon points="352,115.4 331.3,96 160,256 331.3,416 352,396.7 201.5,256 " />
+                  </svg>
+                  <?xml version="1.0" ?>
+                  <!DOCTYPE svg
+                      PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
+                      class="trending_arrow trending_right_btn" height="512px" id="Layer_1"
+                      style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"
+                      xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <polygon points="160,115.4 180.7,96 352,256 180.7,416 160,396.7 310.5,256 " />
+                  </svg>
+
+              </div>
+
+              <div class="trending_poster trending_div_container">
+
+              </div>
+          </div>
+      </div>
+      <section class="Now_playing_movies_container Now_playing_movies_container_trend" id="nowplaying">
+          <h4 class="Now_playing_movies_container_title">
+              Now Playing Movies
+          </h4>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="leftarrow arrowbtn bi-chevron-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                  d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="rightarrow rightarrowindex arrowbtn bi-chevron-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+          <div class="Now_playing_movies_div"></div>
+      </section>
+      <section class="Now_playing_movies_container" id="Trendingmovies">
+          <h4 class="Now_playing_movies_container_title">Trending Movies</h4>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="leftarrow arrowbtn bi-chevron-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                  d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="rightarrow rightarrowindex arrowbtn bi-chevron-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+          <div class="current_popular_movies_div"></div>
+      </section>
+      <section class="Now_playing_movies_container" id="toprated">
+          <h4 class="Now_playing_movies_container_title">Top Rated Movies</h4>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="leftarrow arrowbtn bi-chevron-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                  d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="rightarrow rightarrowindex arrowbtn bi-chevron-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+          <div class="Top_rated_movies_div"></div>
+      </section>
+  </section>
+</section>
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </main>
+
+
+
+    <script>
+        const arrowLeft = document.querySelector(".arrow_left");
+const hamburger = document.querySelector(".hamburger");
+const NowPlayingMoviesDiv = document.querySelector(".Now_playing_movies_div");
+const leftArrow = document.querySelectorAll(".leftarrow");
+const rightarrow = document.querySelectorAll(".rightarrow");
+const lightDarkmode = document.querySelector(".light_darkmode");
+const movieDetails = document.querySelector(".movie_details");
+const sectionStory = document.querySelector(".section_story");
+const posterBig = document.querySelector(".poster_big");
+const hamburgerPhone = document.querySelector(".hamburgerphone");
+const sidenavContainer = document.querySelector(".sidenav_container");
+const overlaySideNavabar = document.querySelector(".overlay_side_navabar");
+const sidenav = document.querySelector(".sidenav");
+const alertMsg = document.querySelector(".alertMsg");
+const okayBtn = document.querySelector(".okaybtn");
+const searchbox = document.querySelector(".search");
+const currentPopularMoviesDiv = document.querySelector(
+  ".current_popular_movies_div"
+);
+const TopRatedMoviesDiv = document.querySelector(".Top_rated_movies_div");
+const menuulLI = document.querySelectorAll(".menu_ul li");
+const trending_div_container = document.querySelector(
+  ".trending_div_container"
+);
+const trending_left_btn = document.querySelector(".trending_left_btn");
+const trending_right_btn = document.querySelector(".trending_right_btn");
+const navContainer = document.querySelector(".navContainer");
+const trending_container = document.querySelector(".trending_container");
+
+menuulLI.forEach((item) => {
+  item.addEventListener("click", function () {
+    menuulLI.forEach((i) => i.classList.remove("hovered"));
+    item.classList.add("hovered");
+  });
+});
+
+lightDarkmode.addEventListener("click", function () {
+  document.body.classList.toggle("light");
+
+  if (document.body.classList.contains(`light`)) {
+    localStorage.setItem(`theme`, `light`);
+  } else {
+    localStorage.setItem(`theme`, `dark`);
+  }
+});
+
+function settheme() {
+  let currtheme = localStorage.getItem("theme");
+
+  if (currtheme == "light") {
+    document.body.classList.add("light");
+  } else {
+    document.body.classList.remove("light");
+  }
+}
+
+settheme();
+
+arrowLeft.addEventListener("click", function () {
+  document.body.classList.remove("minimize_siderbar");
+});
+
+hamburger.addEventListener("click", function () {
+  document.body.classList.add("minimize_siderbar");
+});
+
+hamburgerPhone.addEventListener("click", function () {
+  sidenavContainer.classList.add("sidenav_container_active");
+  overlaySideNavabar.classList.add("sidenav_container_active");
+});
+overlaySideNavabar.addEventListener("click", function () {
+  sidenavContainer.classList.remove("sidenav_container_active");
+  overlaySideNavabar.classList.remove("sidenav_container_active");
+  document.body.classList.remove("minimize_siderbar");
+});
+
+const myApi = "6b2dec73b6697866a50cdaef60ccffcb";
+
+const NowPlaying = async () => {
+  const res = await fetch(
+    "https://api.themoviedb.org/3/movie/now_playing?api_key=680c99274ddab12ffac27271d9445d45&language=en-US&page=1"
+  );
+  const data = await res.json();
+  const NowPlayingmovies = data.results;
+  return NowPlayingmovies;
+};
+
+const TodayTrending = async () => {
+  const res = await fetch(
+    "https://api.themoviedb.org/3/trending/all/day?api_key=6b2dec73b6697866a50cdaef60ccffcb"
+  );
+  const data = await res.json();
+  const trendingtoday = data.results;
+  return trendingtoday;
+};
+
+const popularnow = async () => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/popular?api_key=${myApi}&language=en-US&page=1`
+  );
+  const data = await res.json();
+  const popularnowmovies = data.results;
+  return popularnowmovies;
+};
+const Toprated = async () => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/top_rated?api_key=${myApi}&language=en-US&page=1`
+  );
+  const data = await res.json();
+
+  const Topratedmovies = data.results;
+  return Topratedmovies;
+};
+
+const NowPlayingfun = (movie) => {
+  let url = "{% url 'movien-movieDetail' %}?id=" + encodeURIComponent(movie.id);
+  return `<div class="Now_playing_movies" >
+    <a class="posterlink" href=${url}> <img class="poster" data-id="${
+    movie.id
+  }" src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" 
+        onerror="this.onerror=null;this.src='{% static 'resources/D moviesand tv show.png' %}';"
+        loading="lazy" alt="${movie.title}"></a>
+         <p class="movie_title">${movie.title}</p>
+         <div class="date_rating">
+             <p class="date">${dateFormatter(
+               movie.release_date
+             )}</p><span class="dot dot2"></span>
+             <p class="rating">${
+               movie.vote_average
+             }<span><svg xmlns="http://www.w3.org/2000/svg" width="10"
+                         height="10" fill="Yellow" class="star bi-star-fill" viewBox="0 0 16 16">
+                         <path
+                             d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                     </svg></span></p>
+             <div class="category">Movie</div>
+             </div>
+         </div>`;
+};
+
+const currpopularfun = (movie) => {
+  let url = "{% url 'movien-movieDetail' %}?id=" + encodeURIComponent(movie.id);
+  return `<div class="current_popular_movies" >
+    <a class="posterlink" href=${url}> <img class="poster" data-id="${
+    movie.id
+  }" src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" 
+  onerror="this.onerror=null;this.src='{% static 'resources/D moviesand tv show.png' %}';"
+  loading="lazy" alt="${movie.title}"></a>
+         <p class="movie_title">${movie.title}</p>
+         <div class="date_rating">
+             <p class="date">${dateFormatter(
+               movie.release_date
+             )}</p><span class="dot dot2"></span>
+             <p class="rating">${
+               movie.vote_average
+             }<span><svg xmlns="http://www.w3.org/2000/svg" width="10"
+                         height="10" fill="Yellow" class="star bi-star-fill" viewBox="0 0 16 16">
+                         <path
+                             d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                     </svg></span></p>
+             <div class="category">Movie</div>
+             </div>
+         </div>`;
+};
+const topratedmoviesfun = (movie) => {
+  let url = "{% url 'movien-movieDetail' %}?id=" + encodeURIComponent(movie.id);
+  return `<div class="Top_rated_movies" >
+    <a class="posterlink" href=${url}> <img class="poster" data-id="${
+    movie.id
+  }" src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" 
+  onerror="this.onerror=null;this.src='{% static 'resources/D moviesand tv show.png' %}';"
+  loading="lazy" alt="${movie.title}"></a>
+         <p class="movie_title">${movie.title}</p>
+         <div class="date_rating">
+             <p class="date">${dateFormatter(
+               movie.release_date
+             )}</p><span class="dot dot2"></span>
+             <p class="rating">${
+               movie.vote_average
+             }<span><svg xmlns="http://www.w3.org/2000/svg" width="10"
+                         height="10" fill="Yellow" class="star bi-star-fill" viewBox="0 0 16 16">
+                         <path
+                             d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                     </svg></span></p>
+             <div class="category">Movie</div>
+             </div>
+         </div>`;
+};
+
+const trendinghtml = function (data) {
+  let url = "{% url 'movien-movieDetail' %}?id=" + encodeURIComponent(data.id);
+  let url2 = "{% url 'movien-TvShowsDetails' %}?id=" + encodeURIComponent(data.id);
+  return `<div class="trending_div slides">
+    <div class="trending_child"> </div>
+    <a class="trending_poster" href="${
+      data.media_type == "movie" ? url : url2
+    }"  data-id="${data.id}">
+        <img class="trending_poster"
+            src="https://image.tmdb.org/t/p/original//${data.backdrop_path}"
+            alt="${data.title}">
+           
+            <div class="trending_child_2"> </div>
+        <div class="trending_details">
+            <h1 class="Trending_heading">Trending <span class="Trending_categ">${
+              data.media_type == "movie" ? "Movie" : "TV Show"
+            }</span>
+            </h1>
+            <h3 class="trending_title">${
+              data.media_type == "movie" ? data.title : data.name
+            }</h3>
+
+        </div>
+    </a>
+
+</div>`;
+};
+
+// FORMATA DATE
+const dateFormatter = function (date) {
+  let currdate = date;
+  const newDate = currdate.slice(0, 4);
+  return newDate;
+};
+
+NowPlaying().then((movies) => {
+  movies.forEach((moviee) => {
+    const htmll = NowPlayingfun(moviee);
+    NowPlayingMoviesDiv.insertAdjacentHTML("beforeend", htmll);
+  });
+
+  const NowPlayingMovies = document.querySelectorAll(".Now_playing_movies");
+  NowPlayingMovies.forEach(
+    (ele, i) => (ele.style.transform = `TranslateX(${i * 115}%)`)
+  );
+});
+
+popularnow().then((movies) => {
+  movies.forEach((moviee) => {
+    const htmll = currpopularfun(moviee);
+    currentPopularMoviesDiv.insertAdjacentHTML("beforeend", htmll);
+  });
+
+  const current_popular_movies = document.querySelectorAll(
+    ".current_popular_movies"
+  );
+  current_popular_movies.forEach(
+    (ele, i) => (ele.style.transform = `TranslateX(${i * 115}%)`)
+  );
+});
+
+Toprated().then((movies) => {
+  movies.forEach((moviee) => {
+    const htmll = topratedmoviesfun(moviee);
+    TopRatedMoviesDiv.insertAdjacentHTML("beforeend", htmll);
+  });
+
+  const Top_rated_movies = document.querySelectorAll(".Top_rated_movies");
+  Top_rated_movies.forEach(
+    (ele, i) => (ele.style.transform = `TranslateX(${i * 115}%)`)
+  );
+});
+
+TodayTrending().then((trends) => {
+  trends.forEach((trend) => {
+    const html = trendinghtml(trend);
+    trending_div_container.insertAdjacentHTML("beforeend", html);
+  });
+  const slide = document.querySelectorAll(".slides");
+  slide.forEach(
+    (item, i) => (item.style.transform = `translateX(${100 * i}%)`)
+  );
+
+  let currentSlide = 0;
+  maxSlide = slide.length;
+
+  const goToSlide = function (slides) {
+    slide.forEach(
+      (item, i) => (item.style.transform = `translateX(${100 * (i - slides)}%)`)
+    );
+  };
+
+  const nextSlide = function () {
+    if (currentSlide === maxSlide - 1) {
+      currentSlide = 0;
+    } else {
+      currentSlide++;
+    }
+    goToSlide(currentSlide);
+  };
+
+  const previousSlide = function () {
+    if (currentSlide === 0) {
+      currentSlide = maxSlide - 1;
+    } else {
+      currentSlide--;
+    }
+    goToSlide(currentSlide);
+  };
+
+  trending_right_btn.addEventListener("click", nextSlide);
+
+  trending_left_btn.addEventListener("click", previousSlide);
+
+  timer = setInterval(function () {
+    nextSlide();
+  }, 5000);
+
+  function myStopFunction() {
+    clearTimeout(timer);
+  }
+
+  document
+    .querySelector(".trending_child_2")
+    .addEventListener("mouseover", myStopFunction);
+  document
+    .querySelector(".trending_child_2")
+    .addEventListener("mouseout", function () {
+      timer = setInterval(function () {
+        nextSlide();
+      }, 5000);
+    });
+});
+
+window.addEventListener("scroll", function () {
+  let intiCon = trending_div_container.getBoundingClientRect();
+  if (window.scrollY > intiCon.height - 150) {
+    navContainer.classList.add("bgadd");
+  } else {
+    navContainer.classList.remove("bgadd");
+  }
+});
+
+leftArrow.forEach((item) =>
+  item.addEventListener("click", function () {
+    if (item.parentElement.id == "nowplaying") {
+      Sidescroll(NowPlayingMoviesDiv, "left", 2, 500, 15);
+    }
+
+    if (item.parentElement.id == "Trendingmovies") {
+      Sidescroll(currentPopularMoviesDiv, "left", 2, 500, 15);
+    }
+    if (item.parentElement.id == "toprated") {
+      Sidescroll(TopRatedMoviesDiv, "left", 2, 500, 15);
+    }
+  })
+);
+
+rightarrow.forEach((item) =>
+  item.addEventListener("click", function () {
+    if (item.parentElement.id == "nowplaying") {
+      Sidescroll(NowPlayingMoviesDiv, "right", 2, 500, 15);
+    }
+
+    if (item.parentElement.id == "Trendingmovies") {
+      Sidescroll(currentPopularMoviesDiv, "right", 2, 500, 15);
+    }
+    if (item.parentElement.id == "toprated") {
+      Sidescroll(TopRatedMoviesDiv, "right", 2, 500, 15);
+    }
+  })
+);
+
+const Sidescroll = function (element, direction, speed, distance, step) {
+  scrollAmount = 0;
+  let slideTimer = setInterval(function () {
+    if (direction == "left") {
+      element.scrollLeft -= step;
+    } else {
+      element.scrollLeft += step;
+    }
+    scrollAmount += step;
+    if (scrollAmount >= distance) {
+      window.clearInterval(slideTimer);
+    }
+  }, speed);
+};
+
+//  ALERT MESSAGE AT THE BEGINING//
+/*
+const hideAlert = function () {
+    alertMsg.classList.remove('alertactive');
+}
+
+okayBtn.addEventListener('click', hideAlert)*/
+
+window.onload = function () {
+  if (document.title.includes("Home")) {
+    menuulLI[0].classList.add("hovered");
+  }
+  /* alertMsg.classList.add('alertactive');
+       setTimeout(hideAlert, 2000)*/
+};
+
+searchbox.addEventListener("click", function () {
+  location.replace("{% url 'movien-search2' %}");
+});
+
+    </script>
+
+
+
+    
+</body>
+
+</html>
