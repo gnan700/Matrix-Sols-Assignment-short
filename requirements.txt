@@ -16,6 +16,6 @@ sklearn==0.0
 sqlparse==0.5.3
 threadpoolctl==3.6.0
 tzdata>=2023.3
-gunicorn==2023.0.0
-whitenoise==6.9.0
-crispy_bootstrap5==2025.6
+gunicorn
+whitenoise
+crispy_bootstrap5
